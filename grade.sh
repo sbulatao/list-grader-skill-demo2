@@ -14,7 +14,17 @@ fi
 
 cp student-submission/ListExamples.java ./
 
-javac -cp $CPATH *.java
+cd student-submission
+
+javac -cp $CPATH *.java 2> CError.txt
+
+if [ $? -eq 0 ]
+then 
+	echo "COMPILE SUCCESS"
+else
+	echo "FAIL TO COMPILE, 0/4"
+	exit 1
+fi
 
 java -cp $CPATH org.junit.runner.JUnitCore TestListExamples > junit-output.txt
 
